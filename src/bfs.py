@@ -4,7 +4,7 @@ import numpy as np
 from utils.matrixutils import adjacency_ndarray, boolean_matrix_mult
 
 
-# TODO rename to more sensible
+# TODO rename to something more sensible
 def logical_foo(v1, v2):
     """
     Not symmetric in its arguments
@@ -24,29 +24,32 @@ def bfs(graph, node):
     """
     Breadth First Search in matrix language
     :param graph:
+    :param node: Root node, i.e., node from which to do search
     :return:
     """
     n = graph.number_of_nodes()
     A = adjacency_ndarray(graph).astype(int)
 
+    # BFS segregates nodes into layers or levels of a search tree, according to their distance from the root.
+    layers = []
+
+    # initial layer is the root of the BFS tree
     layer = np.zeros(n, dtype=int)
-
     layer[node] = 1
-    print(layer)
+    layers.append(set(np.nonzero(layer)[0]))
 
+    # keep track of nodes that have been reached by the search - initially, only the root node has been visited
     visited = np.zeros(n, dtype=int)
     visited[node] = 1
 
     # TODO: this only works for complete graphs
-
-    # while any of the nodes remains unvisited
     while any(x != 1 for x in visited):
-        # layer contains the new, hitherto unvisited nodes
+        # layer contains the nodes in the next level of the BFS tree
         layer = logical_foo(boolean_matrix_mult(A, layer), visited)
-        print(layer)
+        layers.append(set(np.nonzero(layer)[0]))
 
         visited = np.logical_or(layer, visited).astype(int)
 
-    return 1
+    return layers
 
 

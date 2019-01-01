@@ -1,5 +1,4 @@
 import itertools as it
-import networkx as nx
 import numpy as np
 
 from utils.matrixutils import adjacency_ndarray
