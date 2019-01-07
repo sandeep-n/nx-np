@@ -1,4 +1,4 @@
-import networkx as nx
+
 import numpy as np
 
 from utils.matrixutils import adjacency_ndarray, boolean_matrix_mult
@@ -42,7 +42,7 @@ def bfs(graph, node):
     visited = np.zeros(n, dtype=int)
     visited[node] = 1
 
-    # TODO: this only works for complete graphs
+    # TODO: this only works for connected graphs
     while any(x != 1 for x in visited):
         # layer contains the nodes in the next level of the BFS tree
         layer = logical_foo(boolean_matrix_mult(A, layer), visited)
