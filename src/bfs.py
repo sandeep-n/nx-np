@@ -20,6 +20,35 @@ def logical_foo(v1, v2):
     return np.array(list(map(lambda tup: visited_filter[tup], zip(v1, v2))))
 
 
+def alt_bfs(adjmat, node):
+    """
+    Breadth First Search: pre-process graph into adjacency matrix
+    :param adjmat:
+    :param node:
+    :return:
+    """
+    n = adjmat.shape[0]
+
+    # BFS partitions nodes into layers/levels of a search tree, according to their distance from the source.
+    layers = []
+
+    # initial layer is the root of the BFS tree
+    layer = np.zeros(n, dtype=int)
+    layer[node] = 1
+    layers.append(set(np.nonzero(layer)[0]))
+
+    # keep track of visited nodes
+    visited = np.zeros(n, dtype=int)
+    visited[node] = 1
+
+    while any(x != 1 for x in visited):
+        layer = logical_foo(boolean_matrix_mult(adjmat, layer), visited)
+        layers.append(set(np.nonzero(layer)[0]))
+        visited = np.logical_or(layer, visited).astype(int)
+
+    return layers
+
+
 def bfs(graph, node):
     """
     Breadth First Search in matrix language

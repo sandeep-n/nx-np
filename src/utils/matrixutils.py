@@ -10,7 +10,7 @@ def adjacency_ndarray(graph):
     :type graph: nx.Graph
     :return: Graph's adjacency matrix in np.ndarray format
     """
-    #TODO: doesn't work when nodes are not labeled by 0-indexed integers.
+    # TODO: doesn't work when nodes are not labeled by 0-indexed integers.
     num_nodes = graph.number_of_nodes()
     adj_mat = np.zeros((num_nodes, num_nodes))
     for (u, v) in graph.edges:

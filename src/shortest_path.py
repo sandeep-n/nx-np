@@ -1,10 +1,10 @@
 
 import numpy as np
 
-from utils.matrixutils import adjacency_dense, boolean_matrix_mult, is_complete_graph
+from utils.matrixutils import boolean_matrix_mult, is_complete_graph
 
 
-def min_plus_apsp(graph):
+def min_plus_apsp(adjmat):
     """
     All-pairs shortest paths using the min-plus product algorithm.
     :param graph:
