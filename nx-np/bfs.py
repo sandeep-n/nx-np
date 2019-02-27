@@ -1,7 +1,7 @@
 
 import numpy as np
 
-from utils.matrixutils import adjacency_ndarray, boolean_matrix_mult
+from matrixutils import adjacency_ndarray, boolean_matrix_mult
 
 
 # TODO rename to something more sensible

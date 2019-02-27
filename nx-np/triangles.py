@@ -1,8 +1,6 @@
 import itertools as it
 import numpy as np
 
-from utils.matrixutils import adjacency_ndarray
-
 
 def triangle_count_iter(graph):
     """
@@ -40,23 +38,21 @@ def triangle_count_iter(graph):
 
 # the linear algebra way
 
-def triangle_count_2(graph):
+def triangle_count_2(adj):
     """
     Straightforward multiplication
-    :param graph:
+    :param adj: Adjacency matrix
     :return:
     """
-    A = adjacency_ndarray(graph)
-    return np.trace(A @ A @ A) / 6
+    return np.trace(adj @ adj @ adj) / 6
 
 
-def triangle_count_3(graph):
+def triangle_count_3(adj):
     """
     L/U matrix splitting followed by tricks.
     :param graph:
     :return:
     """
-    A = adjacency_ndarray(graph)
-    B = np.tril(A) @ np.triu(A)
-    C = A * B
+    lu_prod = np.tril(adj) @ np.triu(adj)
+    C = adj * lu_prod
     return int(np.sum(C) / 2)

@@ -32,15 +32,15 @@ def adjacency_dense(graph):
     return sparse_adj_matrix.toarray()
 
 
-def boolean_matrix_mult(A, B):
+def boolean_matrix_mult(a, b):
     """
 
-    :param A: 0-1 matrix
-    :param B: 0-1 matrix
+    :param a: 0-1 matrix
+    :param b: 0-1 matrix
     :return:
     """
-    A_bool = A.astype('bool')
-    B_bool = B.astype('bool')
+    A_bool = a.astype('bool')
+    B_bool = b.astype('bool')
     C_bool = A_bool @ B_bool
     C = C_bool.astype('int32')
     return C
@@ -57,26 +57,44 @@ def complete_graph_matrix(n):
     return adj_mat
 
 
-def is_complete_graph(A):
+def is_complete_graph(a):
     """
     Test if a given matrix is an adjacency matrix of a complete graph.
-    :param A:
+    :param a:
     :return:
     """
     # Test that diagonals are 0
-    cond_1 = np.all(A.diagonal() == 0)
+    cond_1 = np.all(a.diagonal() == 0)
     # Test that off-diagonals are 1
-    off_diagonal_index = np.where(~np.eye(A.shape[0], dtype=bool))
-    cond_2 = A[off_diagonal_index].all()
+    off_diagonal_index = np.where(~np.eye(a.shape[0], dtype=bool))
+    cond_2 = a[off_diagonal_index].all()
     return cond_1 and cond_2
 
 
-def degree(A, j):
+def degree(a, j):
     """
 
-    :param A: adjacency matrix
+    :param a: adjacency matrix
     :param j: node in graph
     :return: degree of node j
     """
 
-    return A[j, :].sum()
+    return a[j, :].sum()
+
+
+def matrix_power(a, k):
+    """
+    Raise matrix A to the power k by repeated squaring
+    :param a: Square matrix A
+    :param k:
+    :return:
+    """
+    if k == 0:
+        return np.identity(a.shape[0], dtype='int32')
+    elif k == 1:
+        return a
+    else:
+        if k % 2 == 0:
+            return matrix_power(a @ a, k // 2)
+        else:
+            return matrix_power(a @ a, k // 2) @ a
