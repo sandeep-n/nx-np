@@ -1,7 +1,7 @@
 import numpy as np
 import networkx as nx
 
-from shortest_path import seidel
+from .context.nxnp.shortest_path import seidel
 
 
 def test_apsp():

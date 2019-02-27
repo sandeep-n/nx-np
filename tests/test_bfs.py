@@ -1,7 +1,7 @@
 
 import networkx as nx
 
-from bfs import bfs
+from .context.nxnp.bfs import *
 
 
 def test_bfs_path():

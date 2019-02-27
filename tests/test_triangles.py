@@ -1,7 +1,7 @@
 
 import networkx as nx
 from scipy.special import comb
-from triangles import triangle_count
+from .context.nxnp.triangles import triangle_count
 
 
 def test_triangle_count():
