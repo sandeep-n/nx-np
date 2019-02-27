@@ -1,4 +1,3 @@
-
 import numpy as np
 
 from matrixutils import boolean_matrix_mult, is_complete_graph
