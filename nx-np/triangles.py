@@ -38,7 +38,7 @@ def triangle_count_iter(graph):
 
 # the linear algebra way
 
-def triangle_count_2(adj):
+def triangle_count(adj):
     """
     Straightforward multiplication
     :param adj: Adjacency matrix
