@@ -14,6 +14,6 @@ install:
   # Useful for debugging any issues with conda
   - conda info -a
   - conda create --no-default-packages -n test-environment python=3.7 numpy networkx pytest
-  - source activate test-environment
+  - conda activate test-environment
 
 script: python -m pytest
