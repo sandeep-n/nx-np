@@ -15,8 +15,7 @@ install:
   - conda info -a
 
 before_script:
-  - ls
-  - cd sandeep-n/nx-np
+  - pwd
   - conda env create --file environment.yml
   - source activate nx-np
 
