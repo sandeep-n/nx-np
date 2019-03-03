@@ -15,7 +15,6 @@ install:
   - conda info -a
 
 before_script:
-  - pwd
   - conda env create --file environment.yml
   - source activate nx-np
 
