@@ -16,4 +16,7 @@ install:
   - conda create --no-default-packages -n test-environment python=3.7 numpy scipy networkx pytest
   - conda activate test-environment
 
+before_script:
+  - cd nxnp
+
 script: python -m pytest
